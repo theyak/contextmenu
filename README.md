@@ -92,6 +92,8 @@ selector = document.getElementsByClassName( "menus" );
 selector = document.getElementById( "menu" );
 ```
 
+#### attach
+
 ```javascript
 ContextMenu.attach( selector, menu [, options] );
 ```
@@ -118,12 +120,18 @@ ContextMenu.attach( selector, menu, {
 } );
 ```
 
+
+#### disable
+
 ```javascript
 ContextMenu.disable( selector, key );
 ```
 
 Disables a menu item. The *key* reference the key in the menu object to disable.
 
+
+
+### enable
 
 ```javascript
 ContextMenu.enable( selector, key );
