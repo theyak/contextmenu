@@ -1,2 +1,143 @@
 # contextmenu
-A very basic JavaScript implementation of a context menu
+A very basic JavaScript implementation of a context menu.
+
+This is something I coded up one Saturday afternoon for a small project. It is not nearly
+as robust as many of the context menu libraries which you can find on the web.
+
+However, I wrote it because I wanted a pure JavaScript implementation of a context menu.
+I could only find one other library that did not require jQuery, and I found bugs in it,
+so, this was made.
+
+### Usage
+
+All context menus are made with a *menu object*, which defines the menu.
+The *menu object* contains properties which represent each menu item.
+
+Each property may be as simple as a key : function() pair. The is used
+for the menu item label, and the function is called when the item is selected.
+
+```javascript
+var menu = {
+    New : function( target ) { ... },
+    Open : function( target ) { ... },
+    Close : function( target ) { ... }
+};
+```
+
+More advanced options can be set by using a key : Object pair.
+
+```javascript
+var menu = {
+    New : {
+        // Function to call when item is selected
+        onSelect : function( target ) { ... },
+        
+        // Flag indicating if menu item is enabled. Default is true
+        enabled : true,
+        
+        // Text to be used for menu item. If not provided, the key will be used as the text.
+        // Note that HTML can be used here as well.
+        label : "<em>Create New File</em>",
+        
+        // Title attribute added to the 
+        title : "Click here to create a new file"
+    },
+    Open : function( target ) { ... },
+    Close : function( target ) { ... }
+}
+```
+
+The **onSelect** function, identified above with
+
+```javascript
+function( target ) { ... }
+```
+
+can take two additional parameters:
+
+```javascript
+function( target, key, item )
+```
+
+**key** is the item that was selected. In the above example, it would be one of **New**, **Open**, or **Close**.
+
+**item** is the DOM object for the item. This is particularly useful if you had some data tied to the label.
+
+```javascript
+var menu = {
+    New : {
+        label : '<em data-id="1">New</em>',
+        onSelect : function( target, key, item ) { 
+            console.log( item.childNodes[ 0 ].attributes[ "data-id" ].value );
+        }
+    }
+}
+```
+
+### API
+
+All API functions work on selectors. Selectors can be a CSS-like string, a jQuery Selector, a NodeList, or a DOM object.
+
+```javascript
+// CSS-like string
+selector = ".menus";
+
+// jQuery selector
+selector = $( ".menus" );
+
+// NodeList
+selector = document.getElementsByClassName( "menus" );
+
+// DOM object
+selector = document.getElementById( "menu" );
+```
+
+```javascript
+ContextMenu.attach( selector, menu [, options] );
+```
+
+Attaches a menu to an element or elements
+
+```javascript
+ContextMenu.attach( selector, menu );
+
+// Attach with options
+ContextMenu.attach( selector, menu, {
+    // The event to trigger the menu. Likey "click" or "contextmenu"
+    event : "click",
+    
+    // The position of the relative to the element.
+    // Can be one of "bottom", "top", "left", "right", or "click"
+    position : "bottom",
+    
+    // Additional horizontal offset to position of menu, in pixels
+    horizontalOffset : 0,
+    
+    // Additional vertical offset to position of menu, in pixels
+    verticalOffset : 0
+} );
+```
+
+```javascript
+ContextMenu.disable( selector, key );
+```
+
+Disables a menu item. The *key* reference the key in the menu object to disable.
+
+
+```javascript
+ContextMenu.enable( selector, key );
+```
+
+Enables a menu item. The *key* reference the key in the menu object to disable.
+
+
+
+### TODO
+
+These are things I may add if the features should ever be needed:
+
+* Icon images
+* Hot Keys
+* Submenus
+* Second wrapper for menu to make more advanced menu designs
