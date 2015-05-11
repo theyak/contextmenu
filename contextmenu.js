@@ -262,7 +262,7 @@
 			} else {
 				item.className = itemClassNameDisabled;
 			}
-			item.innerHTML = value && value.text ? value.text : key;
+			item.innerHTML = value && value.label ? value.label : key;
 
 			// Assign event listener
 			if ( item.contextMenu.enabled ) {
@@ -443,7 +443,7 @@
 		var itemDefaults = {
 			type : "item",
 			enabled : true,
-			text : "",
+			label : "",
 			onSelect : function() {},
 			icon : "",  // This isn't used yet
 			title : ""
@@ -452,9 +452,9 @@
 		// Quick normalization of menu object
 		for ( idx in menu ) {
 			if ( ! menu[ idx ] ) {
-				menu[ idx ] = extend( { text : idx }, itemDefaults );
+				menu[ idx ] = extend( { label : idx }, itemDefaults );
 			} else if ( isFunction( menu[ idx ] ) ) {
-				menu[ idx ] = extend( { text : idx, onSelect : menu[ idx ] }, itemDefaults );
+				menu[ idx ] = extend( { label : idx, onSelect : menu[ idx ] }, itemDefaults );
 			} else {
 				menu[ idx ] = extend( itemDefaults, menu[ idx ] );
 			}
