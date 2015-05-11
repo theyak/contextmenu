@@ -53,11 +53,13 @@ The **onSelect** function, identified above with
 function( target ) { ... }
 ```
 
-can take two additional parameters:
+can take up to three parameters:
 
 ```javascript
 function( target, key, item )
 ```
+
+**target** is the DOM object for the item selected to create the context menu.
 
 **key** is the item that was selected. In the above example, it would be one of **New**, **Open**, or **Close**.
 
