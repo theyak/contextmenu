@@ -142,6 +142,29 @@ ContextMenu.enable( selector, key );
 Enables a menu item. The *key* reference the key in the menu object to disable.
 
 
+### CSS
+
+There are four CSS classes used. 
+
+```css
+/* Overall style for the context menu. Should always be inline-block and position absolute */
+div.context-menu { 
+    position : absolute;
+    display : inline-block;
+}
+
+/* Style for each menu item */
+div.context-menu-item {}
+
+/* Style for menu item when hovered */
+div.context-menu-item:hover {}
+
+/* Style for disabled menu items */
+div.context-menu-item-disabled {}
+```
+
+See [contextmenu.css](https://github.com/theyak/contextmenu/blob/master/contextmenu.css) for a sample configuration, which is designed for the application I was writing this for. 
+You will want to change it for your own application.
 
 ### TODO
 
@@ -151,3 +174,5 @@ These are things I may add if the features should ever be needed:
 * Hot Keys
 * Submenus
 * Second wrapper for menu to make more advanced menu designs
+* Permit different class names
+* Theming
