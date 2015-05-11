@@ -1,0 +1,26 @@
+div.context-menu {
+	position : absolute;
+	border: 1px solid #A4BED4;
+	background-color: #D9EAFF;
+	min-width : 100px;
+	padding: 5px 0;
+	box-shadow : 2px 2px 4px #444;
+	display : inline-block;
+}
+
+div.context-menu-item {
+	padding : 0 5px;
+	line-height : 1.5em;
+	cursor : pointer;
+}
+
+div.context-menu-item:hover {
+	background-color : #C3D6EE;
+	
+}
+
+div.context-menu-item-disabled {
+	padding : 0 5px;
+	line-height : 1.5em;
+	color : #aaaaaa;
+}
