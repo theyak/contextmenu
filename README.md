@@ -63,14 +63,15 @@ function( target, key, item )
 
 **key** is the item that was selected. In the above example, it would be one of **New**, **Open**, or **Close**.
 
-**item** is the DOM object for the item. This is particularly useful if you had some data tied to the label.
+**item** is the DOM object for the item. This wraps whatever text or HTML is in the item. This is particularly useful if you had some data tied to the label.
 
 ```javascript
 var menu = {
     New : {
         label : '<em data-id="1">New</em>',
         onSelect : function( target, key, item ) { 
-            console.log( item.childNodes[ 0 ].attributes[ "data-id" ].value );
+            // <em> is a child of the item, so we have to fetch the child element of item.
+            console.log( item.childNodes[ 0 ].getAttribute( "data-id" ) );
         }
     }
 }
