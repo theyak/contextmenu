@@ -10,10 +10,10 @@ so, this was made.
 
 ### Usage
 
-All context menus are made with a *menu object*, which defines the menu.
-The *menu object* contains properties which represent each menu item.
+All context menus are made with a simple JavaScript object, which I will call a *menu object*,
+which defines the menu. The *menu object* contains properties which represent each menu item.
 
-Each property may be as simple as a key : function() pair. The is used
+Each property may be as simple as a key : function() pair. The key is used
 for the menu item label, and the function is called when the item is selected.
 
 ```javascript
