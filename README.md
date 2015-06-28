@@ -59,7 +59,7 @@ can take up to three parameters:
 function( target, key, item )
 ```
 
-**target** is the DOM object for the item selected to create the context menu.
+**target** is the DOM object for the item selected to create the context menu. That is, the thing you originally clicked on to create and open the context menu.
 
 **key** is the item that was selected. In the above example, it would be one of **New**, **Open**, or **Close**.
 
