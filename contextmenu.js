@@ -453,12 +453,15 @@
 
 		// Quick normalization of menu object
 		for ( idx in menu ) {
+			// Create copy of defaults
+			var dflt = extend( {}, itemDefaults );
+			
 			if ( ! menu[ idx ] ) {
-				menu[ idx ] = extend( { label : idx }, itemDefaults );
+				menu[ idx ] = extend( dflt, { label : idx } );
 			} else if ( isFunction( menu[ idx ] ) ) {
-				menu[ idx ] = extend( { label : idx, onSelect : menu[ idx ] }, itemDefaults );
+				menu[ idx ] = extend( dflt, { label : idx, onSelect : menu[ idx ] } );
 			} else {
-				menu[ idx ] = extend( itemDefaults, menu[ idx ] );
+				menu[ idx ] = extend( dflt, menu[ idx ] );
 			}
 		}
 
