@@ -214,7 +214,7 @@
 		if ( target.contextMenu ) {
 
 			var menu = createContextMenu( target );
-			target.appendChild( menu );
+			document.body.appendChild( menu );
 
 			// On next tick, position menu. We can't do it right
 			// away because width and height of menu needs to be computed
@@ -226,8 +226,8 @@
 				window.addEventListener( "scroll", closeContextMenu );
 				
 				// Position and display
-				positionContextMenu( e, target, menu );
 				menu.style.visibility = "visible";
+				positionContextMenu( e, target, menu );
 			}, 1 );
 		}
 	};
@@ -274,7 +274,7 @@
 					item.contextMenu.onSelect = onSelect;
 				}
 
-				item.addEventListener( target.contextMenu.event, function() {
+				item.addEventListener( target.contextMenu.event, function( e ) {
 					this.contextMenu.onSelect( target, this.contextMenu.key, item );
 					closeContextMenu();
 				} );
@@ -355,20 +355,20 @@
 		}
 
 		// Too far to the right?
-		if ( left + menuBox.width > screen.width ) {
+		if ( left + menuBox.width > document.body.clientWidth ) {
 			if ( target.contextMenu.horizontalOffset >= 0 ) {
-				left = screen.width - menuBox.width;
+				left = document.body.clientWidth - menuBox.width;
 			} else {
-				left = screen.width - menuBox.width + target.contextMenu.horizontalOffset;
+				left = document.body.clientWidth - menuBox.width + target.contextMenu.horizontalOffset;
 			}
 		}
 
 		// Too far to the bottom?
-		if ( top + menuBox.height > screen.height ) {
+		if ( top + menuBox.height > document.body.clientHeight ) {
 			if ( target.contextMenu.verticalOffset >= 0 ) {
-				top = screen.height - menuBox.height;
+				top = document.body.clientHeight - menuBox.height;
 			} else {
-				top = screen.height - menuBox.height + target.contextMenu.verticalOffset;
+				top = document.body.clientHeight - menuBox.height + target.contextMenu.verticalOffset;
 			}
 		}
 
@@ -525,7 +525,7 @@
 		 * @param {Object} options
 		 */
 		display : function( e, menu, options ) {
-			menu = normalizeMenu( menu );
+			menu = normalizeMenu( extend( {}, menu ) );
 
 			// Create object to associate with element(s).
 			// extend() is used so that we have a unique copy.
