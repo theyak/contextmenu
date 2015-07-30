@@ -124,6 +124,26 @@ ContextMenu.attach( selector, menu, {
 ```
 
 
+#### display
+
+```javascript
+ContextMenu.display( event_or_element, menu [, options] );
+```
+
+Displays a menu associated with an event or element. Useful
+if you don't want to attach a menu to a whole bunch of items
+or if you are dealing with dynamic items.
+
+```javascript
+$( document ).on( "click", ".user", function( e ) {
+	ContextMenu.display( e, menu, { horizontalOffset : 5 } );
+	
+	// You can also pass an element
+	ContextMenu.display( e.target, menu );
+} );
+```
+
+
 #### disable
 
 ```javascript
