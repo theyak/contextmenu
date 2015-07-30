@@ -1,11 +1,12 @@
 div.context-menu {
-	position : absolute;
+	position : fixed;
 	border: 1px solid #A4BED4;
 	background-color: #D9EAFF;
 	min-width : 100px;
 	padding: 5px 0;
 	box-shadow : 2px 2px 4px #444;
 	display : inline-block;
+	z-index : 10002;
 }
 
 div.context-menu-item {
