@@ -212,10 +212,6 @@
 		closeContextMenu();
 
 		if ( target.contextMenu ) {
-			// Set up events to process or close context menu
-			window.addEventListener( "click", closeContextMenu );
-			window.addEventListener( "resize", closeContextMenu );
-			window.addEventListener( "scroll", closeContextMenu );
 
 			var menu = createContextMenu( target );
 			target.appendChild( menu );
@@ -224,6 +220,12 @@
 			// away because width and height of menu needs to be computed
 			// first.
 			setTimeout( function() {
+				// Set up events to process or close context menu
+				window.addEventListener( "click", closeContextMenu );
+				window.addEventListener( "resize", closeContextMenu );
+				window.addEventListener( "scroll", closeContextMenu );
+				
+				// Position and display
 				positionContextMenu( e, target, menu );
 				menu.style.visibility = "visible";
 			}, 1 );
@@ -244,7 +246,7 @@
 		var contextMenu = document.createElement( "div" );
 		contextMenu.className = menuClassName;
 
-		// Initially hidden until we comput position
+		// Initially hidden until we compute position
 		contextMenu.style.visibility = "hidden";
 		contextMenu.style.display = "inline-block";
 
@@ -497,6 +499,59 @@
 			}
 		},
 
+
+		
+		/**
+		 * Display a context menu with an element or event. 
+		 * Useful for when you don't want to attach the context
+		 * menu to a whole bunch of things but just display it
+		 * dynamically.
+		 * 
+		 * @example
+		 *	$( document ).on( "click", ".target-button", function( e ) {
+		 *		ContextMenu.display( e.target, menu, { horizontalOffset : 5 } );
+		 *	} );
+		 *	
+		 * @example
+		 *	$( document ).on( "click", ".target-button", function( e ) {
+		 *		ContextMenu.display( e, menu, { horizontalOffset : 5 } );
+		 *	} );
+		 * 
+		 * @param {Event|HTMLElement} e
+		 * @param {Array|Object} menu
+		 * @param {Object} options
+		 */
+		display : function( e, menu, options ) {
+			menu = normalizeMenu( menu );
+
+			// Create object to associate with element(s).
+			// extend() is used so that we have a unique copy.
+			var contextMenu = extend( { menu : extend( {}, menu ) }, conf, options );
+
+			// Is e a selector or an event?
+			if ( e instanceof Event ) {
+				e.target.contextMenu = contextMenu;
+				onContextMenu( e );
+			} else if ( typeof jQuery !== "undefined" && e instanceof jQuery.Event ) {
+				e.target.contextMenu = contextMenu;
+				onContextMenu( e );
+			} else if ( e instanceof HTMLElement ) {
+				e.contextMenu = contextMenu;
+				
+				// Create a simulated event
+				var box = e.getBoundingClientRect();
+				var evt = {
+					target : e,
+					clientX : box.left,
+					clientY : box.top,
+					stopPropagation : function() {},
+					preventDefault : function() {}
+				}
+				onContextMenu( evt );
+			} else {
+				console.log( e );
+			}
+		},
 
 
 		/**
