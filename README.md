@@ -1,5 +1,5 @@
 # contextmenu
-A very basic JavaScript implementation of a context menu.
+A very basic pure JavaScript implementation of a context menu.
 
 This is something I coded up one Saturday afternoon for a small project. It is not nearly
 as robust as many of the context menu libraries which you can find on the web.
@@ -13,8 +13,8 @@ so, this was made.
 All context menus are made with a simple JavaScript object, which I will call a *menu object*,
 which defines the menu. The *menu object* contains properties which represent each menu item.
 
-Each property may be as simple as a key : function() pair. The key is used
-for the menu item label, and the function is called when the item is selected.
+The most basic, and likely sufficient approach, each property is as simple as a key : function() pair.
+The key is used for the menu item label, and the function is called when the item is selected.
 
 ```javascript
 var menu = {
@@ -136,6 +136,7 @@ or if you are dealing with dynamic items.
 
 ```javascript
 $( document ).on( "click", ".user", function( e ) {
+	// Passing an event
 	ContextMenu.display( e, menu, { horizontalOffset : 5 } );
 	
 	// You can also pass an element
@@ -184,7 +185,8 @@ div.context-menu-item:hover {}
 div.context-menu-item-disabled {}
 ```
 
-See [contextmenu.css](https://github.com/theyak/contextmenu/blob/master/contextmenu.css) for a sample configuration, which is designed for the application I was writing this for. 
+See [contextmenu.css](https://github.com/theyak/contextmenu/blob/master/contextmenu.css) for a sample 
+configuration, which is designed for the application I was writing this for. 
 You will want to change it for your own application.
 
 ### TODO
