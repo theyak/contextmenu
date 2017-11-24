@@ -211,7 +211,7 @@
 		target = e.target;
 		closeContextMenu();
 
-		if ( target.contextMenu ) {
+		if ( target.ctxMenu ) {
 
 			var menu = createContextMenu( target );
 			document.body.appendChild( menu );
@@ -250,16 +250,16 @@
 		contextMenu.style.visibility = "hidden";
 		contextMenu.style.display = "inline-block";
 
-		for ( key in target.contextMenu.menu ) {
-			var value = target.contextMenu.menu[ key ];
+		for ( key in target.ctxMenu.menu ) {
+			var value = target.ctxMenu.menu[ key ];
 
 			var item = document.createElement( "div" );
-			item.contextMenu = {
+			item.ctxMenu = {
 				key : key,
 				enabled : value.enabled ? true : false
 			};
 
-			if ( item.contextMenu.enabled ) {
+			if ( item.ctxMenu.enabled ) {
 				item.className = itemClassName;
 			} else {
 				item.className = itemClassNameDisabled;
@@ -267,15 +267,15 @@
 			item.innerHTML = value && value.label ? value.label : key;
 
 			// Assign event listener
-			if ( item.contextMenu.enabled ) {
+			if ( item.ctxMenu.enabled ) {
 				if ( isFunction( value.onSelect ) ) {
-					item.contextMenu.onSelect = value.onSelect;
+					item.ctxMenu.onSelect = value.onSelect;
 				} else {
-					item.contextMenu.onSelect = onSelect;
+					item.ctxMenu.onSelect = onSelect;
 				}
 
-				item.addEventListener( target.contextMenu.event, function( e ) {
-					this.contextMenu.onSelect( target, this.contextMenu.key, item );
+				item.addEventListener( target.ctxMenu.event, function( e ) {
+					this.ctxMenu.onSelect( target, this.ctxMenu.key, item );
 					closeContextMenu();
 				} );
 			}
@@ -308,38 +308,38 @@
 		// Default position
 		var position = "click";
 
-		if ( target.contextMenu && target.contextMenu.position ) {
-			position = target.contextMenu.position;
+		if ( target.ctxMenu && target.ctxMenu.position ) {
+			position = target.ctxMenu.position;
 		}
 
 		if ( position === "bottom" ) {
 			// Display below element, left aligned (what about RTL languages?)
-			left = targetBox.left + target.contextMenu.horizontalOffset;
-			top = targetBox.bottom + target.contextMenu.verticalOffset;
+			left = targetBox.left + target.ctxMenu.horizontalOffset;
+			top = targetBox.bottom + target.ctxMenu.verticalOffset;
 		} else if ( position === "top" ) {
 			// Display above element, left aligned (what about RTL languages?)
-			left = targetBox.left + target.contextMenu.horizontalOffset;
-			top = targetBox.top - menuBox.height + target.contextMenu.verticalOffset;
+			left = targetBox.left + target.ctxMenu.horizontalOffset;
+			top = targetBox.top - menuBox.height + target.ctxMenu.verticalOffset;
 		} else if ( position === "right" ) {
 			// Display to the right of the element, aligned to the top
-			left = targetBox.left + targetBox.width + target.contextMenu.horizontalOffset;
-			top = targetBox.top + target.contextMenu.verticalOffset;
+			left = targetBox.left + targetBox.width + target.ctxMenu.horizontalOffset;
+			top = targetBox.top + target.ctxMenu.verticalOffset;
 		} else if ( position === "left" ) {
 			// Display to the left of the element, aligned to the top
-			left = targetBox.left - menuBox.width + target.contextMenu.horizontalOffset;
-			top = targetBox.top + target.contextMenu.verticalOffset;
+			left = targetBox.left - menuBox.width + target.ctxMenu.horizontalOffset;
+			top = targetBox.top + target.ctxMenu.verticalOffset;
 		} else {
 			// Display wherever the user clicked the mouse
-			left = e.clientX + target.contextMenu.horizontalOffset;
-			top = e.clientY + target.contextMenu.verticalOffset;
+			left = e.clientX + target.ctxMenu.horizontalOffset;
+			top = e.clientY + target.ctxMenu.verticalOffset;
 		}
 
 		// Check if off screen
 
 		// Too far to the left?
 		if ( left < 0 ) {
-			if ( target.contextMenu.horizontalOffset >= 0 ) {
-				left = target.contextMenu.horizontalOffset;
+			if ( target.ctxMenu.horizontalOffset >= 0 ) {
+				left = target.ctxMenu.horizontalOffset;
 			} else {
 				left = 0;
 			}
@@ -347,8 +347,8 @@
 
 		// Too far up?
 		if ( top < 0 ) {
-			if ( target.contextMenu.verticalOffset >= 0 ) {
-				top = target.contextMenu.verticalOffset;
+			if ( target.ctxMenu.verticalOffset >= 0 ) {
+				top = target.ctxMenu.verticalOffset;
 			} else {
 				top = 0;
 			}
@@ -356,19 +356,19 @@
 
 		// Too far to the right?
 		if ( left + menuBox.width > document.body.clientWidth ) {
-			if ( target.contextMenu.horizontalOffset >= 0 ) {
+			if ( target.ctxMenu.horizontalOffset >= 0 ) {
 				left = document.body.clientWidth - menuBox.width;
 			} else {
-				left = document.body.clientWidth - menuBox.width + target.contextMenu.horizontalOffset;
+				left = document.body.clientWidth - menuBox.width + target.ctxMenu.horizontalOffset;
 			}
 		}
 
 		// Too far to the bottom?
 		if ( top + menuBox.height > document.body.clientHeight ) {
-			if ( target.contextMenu.verticalOffset >= 0 ) {
+			if ( target.ctxMenu.verticalOffset >= 0 ) {
 				top = document.body.clientHeight - menuBox.height;
 			} else {
-				top = document.body.clientHeight - menuBox.height + target.contextMenu.verticalOffset;
+				top = document.body.clientHeight - menuBox.height + target.ctxMenu.verticalOffset;
 			}
 		}
 
@@ -426,8 +426,8 @@
 
 		// Disable each menu element
 		for ( idx = 0; idx < elements.length; idx++ ) {
-			if ( elements[ idx ].contextMenu.menu.hasOwnProperty( key ) ) {
-				elements[ idx ].contextMenu.menu[ key ].enabled = enabled;
+			if ( elements[ idx ].ctxMenu.menu.hasOwnProperty( key ) ) {
+				elements[ idx ].ctxMenu.menu[ key ].enabled = enabled;
 			}
 		}
 	};
@@ -443,12 +443,12 @@
 	var normalizeMenu = function( menu ) {
 		var idx;
 		var itemDefaults = {
-			type : "item",
-			enabled : true,
-			label : "",
-			onSelect : function() {},
-			icon : "",  // This isn't used yet
-			title : ""
+			type: "item",
+			enabled: true,
+			label: "",
+			onSelect: function() {},
+			icon: "",  // This isn't used yet
+			title: ""
 		};
 
 		// Quick normalization of menu object
@@ -497,7 +497,7 @@
 
 			// Attach context menu to each element
 			for ( idx = 0; idx < elements.length; idx++ ) {
-				elements[ idx ].contextMenu = obj;
+				elements[ idx ].ctxMenu = obj;
 				elements[ idx ].addEventListener( obj.event, onContextMenu );
 			}
 		},
@@ -533,22 +533,22 @@
 
 			// Is e a selector or an event?
 			if ( e instanceof Event ) {
-				e.target.contextMenu = contextMenu;
+				e.target.ctxMenu = contextMenu;
 				onContextMenu( e );
 			} else if ( typeof jQuery !== "undefined" && e instanceof jQuery.Event ) {
-				e.target.contextMenu = contextMenu;
+				e.target.ctxMenu = contextMenu;
 				onContextMenu( e );
 			} else if ( e instanceof HTMLElement ) {
-				e.contextMenu = contextMenu;
+				e.ctxMenu = contextMenu;
 				
 				// Create a simulated event
 				var box = e.getBoundingClientRect();
 				var evt = {
-					target : e,
-					clientX : box.left,
-					clientY : box.top,
-					stopPropagation : function() {},
-					preventDefault : function() {}
+					target: e,
+					clientX: box.left,
+					clientY: box.top,
+					stopPropagation: function() {},
+					preventDefault: function() {}
 				}
 				onContextMenu( evt );
 			} else {
