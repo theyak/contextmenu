@@ -13,7 +13,7 @@ so, this was made.
 All context menus are made with a simple JavaScript object, which I will call a *menu object*,
 which defines the menu. The *menu object* contains properties which represent each menu item.
 
-The most basic, and likely sufficient approach, each property is as simple as a key : function() pair.
+The most basic, and likely sufficient approach, each property is as simple as a key: function() pair.
 The key is used for the menu item label, and the function is called when the item is selected.
 
 ```javascript
@@ -24,7 +24,7 @@ var menu = {
 };
 ```
 
-More advanced options can be set by using a key : Object pair.
+More advanced options can be set by using a key: Object pair.
 
 ```javascript
 var menu = {
@@ -33,17 +33,17 @@ var menu = {
         onSelect: function( target ) { ... },
         
         // Flag indicating if menu item is enabled. Default is true
-        enabled : true,
+        enabled: true,
         
         // Text to be used for menu item. If not provided, the key will be used as the text.
         // Note that HTML can be used here as well.
-        label : "<em>Create New File</em>",
+        label: "<em>Create New File</em>",
         
         // Title attribute added to the 
-        title : "Click here to create a new file"
+        title: "Click here to create a new file"
     },
-    Open : function( target ) { ... },
-    Close : function( target ) { ... }
+    Open: function( target ) { ... },
+    Close: function( target ) { ... }
 }
 ```
 
@@ -67,7 +67,7 @@ function( target, key, item )
 
 ```javascript
 var menu = {
-    New : {
+    New: {
         label: '<em data-id="1">New</em>',
         onSelect: function( target, key, item ) { 
             // <em> is a child of the item, so we have to fetch the child element of item.
