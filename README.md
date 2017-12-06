@@ -18,9 +18,9 @@ The key is used for the menu item label, and the function is called when the ite
 
 ```javascript
 var menu = {
-    New : function( target ) { ... },
-    Open : function( target ) { ... },
-    Close : function( target ) { ... }
+    New: function( target ) { ... },
+    Open: function( target ) { ... },
+    Close: function( target ) { ... }
 };
 ```
 
@@ -28,9 +28,9 @@ More advanced options can be set by using a key : Object pair.
 
 ```javascript
 var menu = {
-    New : {
+    New: {
         // Function to call when item is selected
-        onSelect : function( target ) { ... },
+        onSelect: function( target ) { ... },
         
         // Flag indicating if menu item is enabled. Default is true
         enabled : true,
@@ -68,8 +68,8 @@ function( target, key, item )
 ```javascript
 var menu = {
     New : {
-        label : '<em data-id="1">New</em>',
-        onSelect : function( target, key, item ) { 
+        label: '<em data-id="1">New</em>',
+        onSelect: function( target, key, item ) { 
             // <em> is a child of the item, so we have to fetch the child element of item.
             console.log( item.childNodes[ 0 ].getAttribute( "data-id" ) );
         }
@@ -109,17 +109,17 @@ ContextMenu.attach( selector, menu );
 // Attach with options
 ContextMenu.attach( selector, menu, {
     // The event to trigger the menu. Likey "click" or "contextmenu"
-    event : "click",
+    event: "click",
     
     // The position of the relative to the element.
     // Can be one of "bottom", "top", "left", "right", or "click"
-    position : "bottom",
+    position: "bottom",
     
     // Additional horizontal offset to position of menu, in pixels
-    horizontalOffset : 0,
+    horizontalOffset: 0,
     
     // Additional vertical offset to position of menu, in pixels
-    verticalOffset : 0
+    verticalOffset: 0
 } );
 ```
 
@@ -171,8 +171,8 @@ There are four CSS classes used.
 ```css
 /* Overall style for the context menu. Should always be inline-block and position absolute */
 div.context-menu { 
-    position : absolute;
-    display : inline-block;
+    position: absolute;
+    display: inline-block;
 }
 
 /* Style for each menu item */
