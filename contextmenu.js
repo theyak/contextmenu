@@ -77,7 +77,8 @@
 		event : "click",
 		position : "bottom",
 		horizontalOffset : 0,
-		verticalOffset : 0
+		verticalOffset : 0,
+		data : {} 
 	};
 
 	/**
@@ -275,7 +276,7 @@
 				}
 
 				item.addEventListener( target.ctxMenu.event, function( e ) {
-					this.ctxMenu.onSelect( target, this.ctxMenu.key, item );
+					this.ctxMenu.onSelect( target, this.ctxMenu.key, item, target.ctxMenu.data );
 					closeContextMenu();
 				} );
 			}
