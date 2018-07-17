@@ -159,14 +159,31 @@ ContextMenu.disable( selector, key );
 Disables a menu item. The *key* reference the key in the menu object to disable.
 
 
-
-### enable
+#### enable
 
 ```javascript
 ContextMenu.enable( selector, key );
 ```
 
 Enables a menu item. The *key* reference the key in the menu object to disable.
+
+
+#### close
+
+```javascript
+ContextMenu.close();
+```
+
+Close every opened menu.
+
+
+#### isOpen
+
+```javascript
+ContextMenu.isOpen();
+```
+
+Check if a menu is open.
 
 
 ### CSS

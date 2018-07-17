@@ -82,6 +82,13 @@
 	};
 
 	/**
+	 * Variable indicating if a menu is open
+	 * @type {boolean}
+	 */
+	var isOpen = false;
+
+
+	/**
 	 * Target object of context menu. This is the DOM object clicked
 	 * on to open the context menu.
 	 * @type {HTMLElement}
@@ -216,6 +223,7 @@
 
 			var menu = createContextMenu( target );
 			document.body.appendChild( menu );
+			isOpen = true;
 
 			// On next tick, position menu. We can't do it right
 			// away because width and height of menu needs to be computed
@@ -409,6 +417,7 @@
 		for ( idx = 0; idx < elements.length; idx++ ) {
 			elements[ idx ].parentNode.removeChild( elements[ idx ] );
 		}
+		isOpen = false;
 	};
 
 
@@ -587,6 +596,16 @@
 		 */
 		close : function() {
 			closeContextMenu();
+		},
+
+
+
+		/**
+		 * Check if a context menu is open
+		 * @returns {boolean}
+		 */
+		isOpen : function() {
+			return isOpen;
 		}
 	};
 
