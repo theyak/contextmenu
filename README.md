@@ -53,10 +53,10 @@ The **onSelect** function, identified above with
 function( target ) { ... }
 ```
 
-can take up to three parameters:
+can take up to four parameters:
 
 ```javascript
-function( target, key, item )
+function( target, key, item, data )
 ```
 
 **target** is the DOM object for the item selected to create the context menu. That is, the thing you originally clicked on to create and open the context menu.
@@ -65,11 +65,13 @@ function( target, key, item )
 
 **item** is the DOM object for the item. This wraps whatever text or HTML is in the item. This is particularly useful if you had some data tied to the label.
 
+**data** is the data you may have added to the options (see [attach](#attach)), default value is an empty object.
+
 ```javascript
 var menu = {
     New: {
         label: '<em data-id="1">New</em>',
-        onSelect: function( target, key, item ) { 
+        onSelect: function( target, key, item, data ) { 
             // <em> is a child of the item, so we have to fetch the child element of item.
             console.log( item.childNodes[ 0 ].getAttribute( "data-id" ) );
         }
@@ -119,7 +121,10 @@ ContextMenu.attach( selector, menu, {
     horizontalOffset: 0,
     
     // Additional vertical offset to position of menu, in pixels
-    verticalOffset: 0
+    verticalOffset: 0,
+
+    // Some data you may want to add
+    data: {}
 } );
 ```
 
@@ -154,14 +159,31 @@ ContextMenu.disable( selector, key );
 Disables a menu item. The *key* reference the key in the menu object to disable.
 
 
-
-### enable
+#### enable
 
 ```javascript
 ContextMenu.enable( selector, key );
 ```
 
 Enables a menu item. The *key* reference the key in the menu object to disable.
+
+
+#### close
+
+```javascript
+ContextMenu.close();
+```
+
+Close every opened menu.
+
+
+#### isOpen
+
+```javascript
+ContextMenu.isOpen();
+```
+
+Check if a menu is open.
 
 
 ### CSS
