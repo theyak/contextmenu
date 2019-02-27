@@ -1,11 +1,13 @@
 /**
- * Basic Context Menu - v0.0.1
+ * Basic Context Menu - v0.0.2
  *
  * Copyright (c) 2015
  * Released under the MIT license.
  *
  * This is an extremely basic context menu library for JavaScript.
  * It has no dependencies.
+ *
+ * 0.0.2 - Reformat. No code changes.
  *
  * Usage:
  *
