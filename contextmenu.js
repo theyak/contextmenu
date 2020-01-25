@@ -1,5 +1,5 @@
 /**
- * Basic Context Menu - v0.0.2
+ * Basic Context Menu - v0.0.3
  *
  * Copyright (c) 2015
  * Released under the MIT license.
@@ -218,7 +218,7 @@
         e.stopPropagation();
         e.preventDefault();
 
-        target = e.target;
+        target = this;
         closeContextMenu();
 
         if (target.ctxMenu) {
