@@ -285,7 +285,7 @@
                     item.ctxMenu.onSelect = onSelect;
                 }
 
-                item.addEventListener(target.ctxMenu.event, function(e) {
+                item.addEventListener("click", function(e) {
                     this.ctxMenu.onSelect(target, this.ctxMenu.key, item, target.ctxMenu.data);
                     closeContextMenu();
                 });
