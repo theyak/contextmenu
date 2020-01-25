@@ -637,4 +637,4 @@
     } else {
         window.ContextMenu = ContextMenu;
     }
-})(this);
+})(window || this);
